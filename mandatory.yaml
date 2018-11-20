@@ -14,6 +14,8 @@ metadata:
   labels:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/part-of: ingress-nginx
+data:
+  custom-http-errors: "404"
 
 ---
 
@@ -196,6 +198,7 @@ spec:
             - --configmap=$(POD_NAMESPACE)/nginx-configuration
             - --publish-service=$(POD_NAMESPACE)/ingress-nginx
             - --annotations-prefix=nginx.ingress.kubernetes.io
+            - --default-backend-service=ingress-nginx/nginx-errors
           securityContext:
             capabilities:
               drop:
