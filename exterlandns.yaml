@@ -61,3 +61,10 @@ spec:
             secretKeyRef:
               name: do-token
               key: token
+        resources:
+          requests:
+            memory: "24Mi"
+            cpu: "50m"
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
