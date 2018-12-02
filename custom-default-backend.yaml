@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-errors
+  namespace: ingress-nginx
   labels:
     app.kubernetes.io/name: nginx-errors
     app.kubernetes.io/part-of: ingress-nginx
@@ -20,11 +21,17 @@ kind: Deployment
 apiVersion: apps/v1beta2
 metadata:
   name: nginx-errors
+  namespace: ingress-nginx
   labels:
     app.kubernetes.io/name: nginx-errors
     app.kubernetes.io/part-of: ingress-nginx
 spec:
   replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
   selector:
     matchLabels:
       app.kubernetes.io/name: nginx-errors
@@ -40,3 +47,10 @@ spec:
         image: haugom/error404:0.1
         ports:
         - containerPort: 8081
+        resources:
+          requests:
+            memory: "24Mi"
+            cpu: "10m"
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
