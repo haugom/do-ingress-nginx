@@ -16,9 +16,8 @@ spec:
     targetPort: 8081
     name: http
 ---
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
-apiVersion: apps/v1beta2
 metadata:
   name: nginx-errors
   namespace: ingress-nginx
@@ -45,6 +44,7 @@ spec:
       containers:
       - name: nginx-error-server
         image: haugom/error404:0.1
+        imagePullPolicy: Always
         ports:
         - containerPort: 8081
         resources:
@@ -53,4 +53,3 @@ spec:
             cpu: "10m"
           limits:
             memory: "64Mi"
-            cpu: "100m"
