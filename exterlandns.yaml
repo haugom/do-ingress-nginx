@@ -51,6 +51,7 @@ spec:
       containers:
       - name: external-dns
         image: registry.opensource.zalan.do/teapot/external-dns:latest
+        imagePullPolicy: Always
         args:
         - --source=ingress # source is also possible
         - --domain-filter=cloud.haugom.org # (optional) limit to only example.com domains; change to match the zone created above.
