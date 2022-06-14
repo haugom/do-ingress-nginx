@@ -4,10 +4,12 @@
 
 My deployment of ingress-nginx on a test cluster:
 
-[mandatory.yaml](mandatory.yaml) - official ingress-nginx default configuration.
+Currently using helm chart to install the ingress-nginx.
+```bash
+helm show values ingress-nginx
+helm install blabla ingress-nginx/ingress-nginx
+```
 
-[loadbalancer.yaml](loadbalancer.yaml) - example kubernetes service object of type LoadBalancer which works with digital oceans kubernetes. 
+Now DO setups the loadbalaner and creates it.
 
 [exterlandns.yaml](exterlandns.yaml) - test running externaldns as a pod which can update add dns entries for ingress rules.
-
-[custom-default-backend.yaml](custom-default-backend.yaml) - playing with custom error backend.
